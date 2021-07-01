@@ -36,29 +36,106 @@
     ];
     
     // Array.prototype.filter()
-    // 1. Filter the list of inventors for those who were born in the 1500's
+    // 1. Filter the list of inventors for those who were born in the 1500s:
+
+inventors.filter(inventor => {
+	if (inventor["year"].toString().startsWith("15")) {
+console.log(inventor);
+}
+});
 
     // Array.prototype.map()
-    // 2. Give us an array of the inventors first and last names
+    // 2. Give us an array of the inventors first and last names:
+
+let arrayFirstNames = [];
+let arraySecondNames = [];
+
+inventors.map(inventor => {
+    arrayFirstNames.push(inventor.first);
+    arraySecondNames.push(inventor.last);
+}); // ---> creates two separate arrays: one for first names and one for last names
+
+~~~~~~~
+
+let namesArray = [];
+
+inventors.map(inventor => {
+    namesArray.push(inventor.first + " " + inventor.last);
+    });
 
     // Array.prototype.sort()
-    // 3. Sort the inventors by birthdate, oldest to youngest
+    // 3. Sort the inventors by birthdate, oldest to youngest:
+
+inventors.sort((inventorA, inventorB) => {
+    if (inventorA["year"] > inventorB["year"]) {
+    return 1;
+  }
+});
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
 
+let totalYears = 0;
+inventors.map(inventor => {
+    let yearsLived = inventor.passed - inventor.year;
+    totalYears += yearsLived;
+    // return totalYears;
+});
+
     // 5. Sort the inventors by years lived
+
+inventors.sort((inventorA, inventorB) => {
+    let yearsLivedA = inventorA.passed - inventorA.year;
+    let yearsLivedB = inventorB.passed - inventorB.year;
+            if (yearsLivedA > yearsLivedB) {
+            return 1;
+    }
+  });
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
+const boulevards = ["Boulevard Auguste-Blanqui", "Boulevard Barbès", "Boulevard Beaumarchais", "Boulevard de l'Amiral-Bruix", 
+"Boulevard Mortier", "Boulevard Poniatowski", "Boulevard Soult", "Boulevard des Capucines", "Boulevard de la Chapelle",
+ "Boulevard de Clichy", "Boulevard du Crime", "Boulevard du Général-d'Armée-Jean-Simon", "Boulevard Haussmann", 
+"Boulevard de l'Hôpital", "Boulevard des Italiens", "Boulevard Lefebvre", "Boulevard de la Madeleine", "Boulevard de Magenta", 
+"Boulevard Malesherbes", "Boulevard Marguerite-de-Rochechouart", "Boulevard Montmartre", "Boulevard du Montparnasse", 
+"Boulevard Raspail", "Boulevard Richard-Lenoir", "Boulevard Saint-Germain", "Boulevard Saint-Michel", "Boulevard de Sébastopol", 
+"Boulevard de Strasbourg", "Boulevard du Temple", "Boulevard Voltaire", "Boulevard de la Zone"];
+
+boulevards.filter(boulevard => {
+  if (boulevard.includes("de")) {
+  return boulevard;
+    }
+});
 
     // 7. sort Exercise
-    // Sort the people alphabetically by last name
+    // Sort the people alphabetically by last name:
+
+people.sort((personA, personB) => {
+    if (personA > personB) {
+return 1;
+}
+});
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
+
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+let cars = 0;
+let truck = 0;
+let bike = 0;
+let walk = 0;
+let vans = 0;
+
+for (let item of data) {
+if (item == "car") cars++;
+if (item == "truck") truck++;
+if (item == "bike") bike++;
+if (item == "walk") walk++;
+if (item == "van") vans++;
+};
 
   </script>
 </body>
